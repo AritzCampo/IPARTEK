@@ -97,6 +97,28 @@ public class EjerciciosGenerales {
 
 		sc.close();
 	}*/
+		//FIbonaci
+				String cantidad;
+				int numero = 0, aux =1;
+				Scanner sc = new Scanner(System.in);
+				System.out.println("cuantos numeros de fibonaci quieres?");
+				cantidad = sc.nextLine();
+				numero = Integer.parseInt(cantidad);
+				int [] array = new int[numero];
+				
+				for (int i = 0; i <= numero -1; i++) {
+					if (i == 0 || i == 1) {
+						array[i] = aux;
+					}else {
+						array[i] = array[i-1]+array[i-2];
+					}						
+				}
+				for (int i = 0; i <= numero -1; i++) {
+					System.out.print(array[i] + " ");
+				}
+				
+				sc.close();
+
 
 }
 }
