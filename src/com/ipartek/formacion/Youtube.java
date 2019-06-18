@@ -16,7 +16,7 @@ public class Youtube {
 	// propiedades
 	private String titulo; // minimo 2 letras max 150
 	private String codigo; // exactamente 11 caracteres
-	private int reproducciones;
+	private int reproducciones;//>=0
 
 	// Constructores
 	public Youtube(String titulo, String codigo) throws Exception {
