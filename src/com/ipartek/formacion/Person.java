@@ -79,8 +79,14 @@ public class Person {
     	super();
     }
     
-	public Person(String nombre, int edad, float altura, float peso, String ojos, char sexo) {
+    public Person(String nombre) {
 		this();
+		this.setNombre(nombre);
+		
+	}
+    
+	public Person(String nombre, int edad, float altura, float peso, String ojos, char sexo) {
+		super();
 		this.nombre = nombre;
 		this.edad = edad;
 		this.altura = altura;
