@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.ipartek.formacion.PerroPresa" project="IPARTEK" 
+    file="/IPARTEK/src/com/ipartek/formacion/PerroPresa.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="118" x="717" y="552"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.ipartek.formacion.PerroException" project="IPARTEK" 
+    file="/IPARTEK/src/com/ipartek/formacion/PerroException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="135" x="249" y="35"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.ipartek.formacion.AulaPerson" project="IPARTEK" 
+    file="/IPARTEK/src/com/ipartek/formacion/AulaPerson.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="253" x="424" y="35"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.ipartek.formacion.Employee" project="IPARTEK" 
+    file="/IPARTEK/src/com/ipartek/formacion/Employee.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="249" x="896" y="552"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.ipartek.formacion.Perro" project="IPARTEK" 
+    file="/IPARTEK/src/com/ipartek/formacion/Perro.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="174" x="717" y="35"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.ipartek.formacion.Person" project="IPARTEK" 
+    file="/IPARTEK/src/com/ipartek/formacion/Person.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="477" width="214" x="931" y="35"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="7">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="8">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

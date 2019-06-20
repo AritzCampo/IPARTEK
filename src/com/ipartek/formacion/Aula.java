@@ -10,20 +10,20 @@ public class Aula {
 
 		// declarar array con nombre alumnos
 		ArrayList<Person> alumnos = new ArrayList<Person>();
-		alumnos.add(new Person("Ander"));
-		alumnos.add(new Person("Mounir"));
-		alumnos.add(new Person("Andoni"));
-		alumnos.add(new Person("Asier"));
-		alumnos.add(new Person("Jon C"));
-		alumnos.add(new Person("Arkaitz"));
-		alumnos.add(new Person("Manuel"));
-		alumnos.add(new Person("Eder I"));
-		alumnos.add(new Person("Eder S"));
-		alumnos.add(new Person("Gaizka"));
-		alumnos.add(new Person("Borja"));
-		alumnos.add(new Person("Verónica"));
-		alumnos.add(new Person("Jon A"));
-		alumnos.add(new Person("Jose Luis"));
+		alumnos.add(new Person(23,"Ander"));
+		alumnos.add(new Person(54,"Mounir"));
+		alumnos.add(new Person(56,"Andoni"));
+	//	alumnos.add(new Person("Asier"));
+	//	alumnos.add(new Person("Jon C"));
+	//	alumnos.add(new Person("Arkaitz"));
+	//	alumnos.add(new Person("Manuel"));
+	//	alumnos.add(new Person("Eder I"));
+	//	alumnos.add(new Person("Eder S"));
+	//	alumnos.add(new Person("Gaizka"));
+	//	alumnos.add(new Person("Borja"));
+	//	alumnos.add(new Person("Verónica"));
+	//	alumnos.add(new Person("Jon A"));
+	//	alumnos.add(new Person("Jose Luis"));
 
 
 		int numero = (int) (Math.random() * alumnos.size());

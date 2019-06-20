@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-/**
- * Generamos un menu para insertar, borrar, mostrar y buscar alumno de forma
- * aleatoria Usuario introduce la opcion y lo sigue haciendo hasta q elige salir
- * Los objetos del arraylist son objetos de tipo Person
- * 
- * @author Aritz
- *
- */
-public class AulaPerson {
-	static ArrayList<Alumno> alumnos;//variables globales para trabajar sobre ellas desde cualquier funcion
-	static Scanner sc = null;//scanner para leer
+import com.ipartek.formacion.modelo.DAOAlumnoArrayList;
+
+
+public class AppGestionAlumnos {
+	static DAOAlumnoArrayList dao;
+	static Scanner sc = null;
 
 	/**
 	 * Funcion que muestra el menu
@@ -30,12 +25,15 @@ public class AulaPerson {
 		System.out.println("***********************************************");
 
 	}
-    /**
-     * Funcion para recuperar la opcion del usuario. No sale hasta q la opcion es correcta 
-     * @return La opcion q elige el usuario
-     * 
-     */
-	public static int pedirOpcionMenu(){
+
+	/**
+	 * Funcion para recuperar la opcion del usuario. No sale hasta q la opcion es
+	 * correcta
+	 * 
+	 * @return La opcion q elige el usuario
+	 * 
+	 */
+	public static int pedirOpcionMenu() {
 
 		boolean correcto = false;
 		String sOpcion;
@@ -60,34 +58,58 @@ public class AulaPerson {
 
 		return opcion;
 	}
-    /**
-     * Saca un listado de los alumnos ordenado por numero de veces que han sido elegidos
-     * @param alumnos arrayList de personas, recibe el objeto arrayList global para trabajar con el
-     */
+
+	/**
+	 * Saca un listado de los alumnos ordenado por numero de veces que han sido
+	 * elegidos
+	 * 
+	 * @param alumnos arrayList de personas, recibe el objeto arrayList global para
+	 *                trabajar con el
+	 */
 	public static void listarAlumnosRanking() {
-		Collections.sort(alumnos);
-		for (int i = 0; i < alumnos.size(); i++) {
-			System.out.println(i + 1 + " " + alumnos.get(i).getNombre() + " " + alumnos.get(i).getVecesElegido());
+		ArrayList<Alumno> lista = dao.getAll();
+		Collections.sort(lista);
+		for (int i = 0; i < lista.size(); i++) {
+			System.out.println(i + 1 + " " + lista.get(i).getNombre() + " " + lista.get(i).getVecesElegido());
 		}
 	}
-    /**
-     * Inserta un alumno nuevo al final de la lista
-     * @param alumnos, arrayList de personas, recibe el objeto arrayList global para trabajar con el
-     */
+
+	/**
+	 * Inserta un alumno nuevo al final de la lista
+	 * 
+	 * @param alumnos, arrayList de personas, recibe el objeto arrayList global para
+	 *                 trabajar con el
+	 */
 	public static void insertarAlumno() {
 		String nombreAlumno;
+		String strId;
+		int id = 0;
+		Alumno nuevo = new Alumno();
 		System.out.println("INTRODUZCA UN NOMBRE :  ");
 		nombreAlumno = sc.nextLine();
-		alumnos.add(new Alumno(-1, nombreAlumno));
+		boolean correcto = false;
+		while (!correcto) {
+			System.out.println("INTRODUZCA UN ID :  ");
+			strId = sc.nextLine();
+			try {
+				id = Integer.parseInt(strId);
+				correcto = true;
+			} catch (Exception e) {
+				System.out.println("ID ERRONEO");
+			}
+		}
+		nuevo.setNombre(nombreAlumno);
+		nuevo.setId(id);
+		if (dao.insert(nuevo)) {
 		System.out.println("Nuevo alumno insertado");
+		}else {
+			System.out.println("Error al insertar");
+		}
 
 	}
-    /**
-     * Eliminamos alumno. Preguntamos si eliminar por nombre o por posicion. 
-     * No sale si no es opcion correcta. 
-     * @param alumnos,arrayList de personas, recibe el objeto arrayList global para trabajar con el
-     */
+	
 	public static void eliminarAlumno() {
+		ArrayList<Alumno> lista = dao.getAll();
 		String nombreAlumno;
 		boolean correcto = false;
 		String sOpcion;
@@ -108,9 +130,14 @@ public class AulaPerson {
 					if (opcion == 1) {
 						System.out.println("INTRODUZCA UN NOMBRE :  ");
 						nombreAlumno = sc.nextLine();
-						for (int i = 0; i < alumnos.size(); i++) {
-							if (alumnos.get(i).getNombre().equals(nombreAlumno)) {
-								alumnos.remove(i);
+						for (int i = 0; i < lista.size(); i++) {
+							if (lista.get(i).getNombre().equals(nombreAlumno)) {
+								//dao.delete(i);
+								if (dao.delete(lista.get(i).getId())) {
+									System.out.println("Nuevo alumno borrado");
+									}else {
+										System.out.println("Error al borrar");
+									}
 							}
 						}
 					} else if (opcion == 2) {
@@ -120,7 +147,12 @@ public class AulaPerson {
 							sOpcion = sc.nextLine();
 							try {
 								opcion = Integer.parseInt(sOpcion);
-								alumnos.remove(opcion - 1);
+								//dao.delete(lista.get(opcion -1).getId());
+								if (dao.delete(lista.get(opcion -1).getId())) {
+									System.out.println("Nuevo alumno borrado");
+									}else {
+										System.out.println("Error al borrar");
+									}
 								correcto = true;
 
 							} catch (Exception e) {
@@ -143,7 +175,9 @@ public class AulaPerson {
 		} // end while segundo menu
 
 	}
-    /**
+	
+	
+	/**
      * Genera un numero aleatorio para ver a quien le toca leer
      * @param longitud, int longitud maxima del arrayList
      * @return int posicion. La posicion de la persona a leer
@@ -160,18 +194,21 @@ public class AulaPerson {
      * @param alumnos, arrayList de personas, recibe el objeto arrayList global para trabajar con el
      */
 	public static void buscarAlumno() {
-		int i = generarAleatorio(alumnos.size());
-		alumnos.get(i).setVecesElegido(alumnos.get(i).getVecesElegido() + 1);
-		System.out.println("El alumno q leera es :  " + alumnos.get(i).getNombre());
+		ArrayList<Alumno> lista = dao.getAll();
+		int i = generarAleatorio(lista.size());
+		lista.get(i).setVecesElegido(lista.get(i).getVecesElegido() + 1);
+		dao.update(lista.get(i));
+		System.out.println("El alumno q leera es :  " + lista.get(i).getNombre());
 	}
+	
+	
+	
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		int opcion = 0;
+		dao = new DAOAlumnoArrayList();
 		sc = new Scanner(System.in);
 
-		alumnos = new ArrayList<Alumno>();
-
-		
 		while (opcion != 5) {
 
 			generarMenu();
@@ -197,6 +234,7 @@ public class AulaPerson {
 			}
 		}
 		sc.close();
-	} // end main
+
+	}
 
 }

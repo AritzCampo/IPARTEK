@@ -38,8 +38,8 @@ public class Employee extends Person{
 		this.fechaContrato = new Date();
 		this.salario = SALARIO_MINIMO;
 	}
-	public Employee(String nombre, int edad, float altura, float peso, String ojos, char sexo, float salario) {
-		super(nombre, edad, altura, peso, ojos, sexo);
+	public Employee(int id, String nombre, int edad, float altura, float peso, String ojos, char sexo, float salario) {
+		super(id, nombre, edad, altura, peso, ojos, sexo);
 		this.salario = salario;
 	}
 

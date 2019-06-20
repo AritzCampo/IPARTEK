@@ -12,19 +12,19 @@ public class Alumno extends Person implements Comparable<Alumno>{
 	}
 	
 
-	public Alumno(String nombre, int edad, float altura, float peso, String ojos, char sexo, int vecesElegido) {
-		super(nombre, edad, altura, peso, ojos, sexo);
+	public Alumno(int id, String nombre, int edad, float altura, float peso, String ojos, char sexo, int vecesElegido) {
+		super(id, nombre, edad, altura, peso, ojos, sexo);
 		this.vecesElegido = vecesElegido;
 		
 	}
 	
-	public Alumno(String nombre) {
-		super(nombre);
+	public Alumno(int id, String nombre) {
+		super(id, nombre);
 		vecesElegido = 0;
 	}
 
-	public Alumno(String nombre, int vecesElegido) {
-		super(nombre);
+	public Alumno(int id, String nombre, int vecesElegido) {
+		super(id, nombre);
 		this.vecesElegido = vecesElegido;
 	}
 

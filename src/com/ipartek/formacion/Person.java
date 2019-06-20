@@ -7,6 +7,7 @@ package com.ipartek.formacion;
 public class Person {
 
 	//atributos
+	 private int id;
 	 private  String nombre;
 	 private  int edad;
 	 private  float altura;
@@ -80,14 +81,26 @@ public class Person {
     	super();
     }
     
-    public Person(String nombre) {
+    public Person(int id,String nombre) {
 		this();
+		this.setId(id);
 		this.setNombre(nombre);
 		
 	}
     
-	public Person(String nombre, int edad, float altura, float peso, String ojos, char sexo) {
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public Person(int id, String nombre, int edad, float altura, float peso, String ojos, char sexo) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.altura = altura;
@@ -98,15 +111,18 @@ public class Person {
 	}
 
 //resto funciones
-	@Override
-	public String toString() {
-		return "Person [nombre=" + nombre + ", edad=" + edad + ", altura=" + altura + ", peso=" + peso + ", ojos="
-				+ ojos + ", sexo=" + sexo + "]";
-	}
+
 
 
 	 public String saludar() {
 		return "Hola me llamo " + nombre;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", altura=" + altura + ", peso=" + peso
+				+ ", ojos=" + ojos + ", sexo=" + sexo + "]";
 	}
 	
 	   
