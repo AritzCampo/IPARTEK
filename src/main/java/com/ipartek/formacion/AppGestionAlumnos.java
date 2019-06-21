@@ -206,7 +206,8 @@ public class AppGestionAlumnos {
 
 	public static void main(String[] args) {
 		int opcion = 0;
-		dao = new DAOAlumnoArrayList();
+		//dao = new DAOAlumnoArrayList();
+		dao = DAOAlumnoArrayList.getInstance();
 		sc = new Scanner(System.in);
 
 		while (opcion != 5) {

@@ -9,8 +9,24 @@ import com.ipartek.formacion.Alumno;
 public class DAOAlumnoArrayList implements IPersistible<Alumno> {
 
 	private ArrayList<Alumno> lista;
-
-	public DAOAlumnoArrayList() {
+    private static DAOAlumnoArrayList INSTANCE;
+	/**
+	 * Encargado de devolver solo un objeto. PATRON SINGLETON
+	 * @return
+	 */
+	public static synchronized DAOAlumnoArrayList getInstance(){
+		
+		if (INSTANCE == null) {
+			INSTANCE = new DAOAlumnoArrayList();
+		}
+		
+		return INSTANCE;
+		
+	}
+	/**
+	 * privado para q nadie pueda crear objetos.
+	 */
+	private DAOAlumnoArrayList() {
 		super();
 		lista = new ArrayList<Alumno>();
 		/*lista.add(new Alumno(12, "Antton"));
