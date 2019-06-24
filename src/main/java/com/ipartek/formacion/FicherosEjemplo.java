@@ -24,9 +24,9 @@ public class FicherosEjemplo {
 		//@see http://www.chuidiang.org/java/ficheros/ObjetosFichero.php
 
 
-		String lineaSimulada = "1;Manolo;12;verdes;mucho";
+		//String lineaSimulada = "1;Manolo;12;verdes;mucho";
 
-		String[] campos = lineaSimulada.split(";");
+		//String[] campos = lineaSimulada.split(";");
 
 		System.out.println("Fichero guardado");
 

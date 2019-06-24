@@ -13,7 +13,7 @@ import com.ipartek.formacion.Alumno;
 public class DAOAlumnoFichero {
 	private ArrayList<Alumno> lista;
 	private static DAOAlumnoFichero INSTANCE;
-	static String ficheroNombre = "C:\\1713\\eclipse-workspace\\1713\\Alumnos.txt";
+	static String ficheroNombre = "C:\\1713\\eclipse-workspace\\IPARTEK\\Alumnos.txt";
 	static Scanner sc = new Scanner(System.in);
 	static FileWriter fw;// new FileWriter(ficheroNombre);
 	static FileReader fr;
@@ -52,21 +52,23 @@ public class DAOAlumnoFichero {
 		// recupero todo el archivo en la lista
 		fr = new FileReader(ficheroNombre);
 		br = new BufferedReader(fr);
+		String[] alumno;
 		String lineaLeida;
 		while ((lineaLeida = br.readLine()) != null) {
 
-			String[] alumno = lineaLeida.split(";");
+			alumno = lineaLeida.split(";");
 			int id = Integer.parseInt(alumno[0]);
 			Alumno objetoAlumno = new Alumno(id, alumno[1]);
 			lista.add(objetoAlumno);
 		}
-		
+		br.close();
+		fr.close();
 
 		return lista;
 	}
 
 	public Alumno getById(int id) {
-	    		
+
 		Alumno resul = null;
 		for (Alumno a : lista) {
 			if (a.getId() == id) {
@@ -87,16 +89,44 @@ public class DAOAlumnoFichero {
 		bw.write(";");
 		bw.write(a.getVecesElegido());
 		bw.newLine();
+		bw.close();
+		fw.close();
 
 		return lista.add(a);
 
 	}
-	
 
-/*PENDIENTE DE TERMINAR*/
+	public boolean insertPrimero(Alumno a) throws IOException {
+		// lo escribo en el fichero antes de cargarlo en la lista
+		fw = new FileWriter(ficheroNombre);
+		bw = new BufferedWriter(fw);
+		bw.write(String.valueOf(a.getId()));
+		bw.write(";");
+		bw.write(a.getNombre());
+		bw.write(";");
+		bw.write(a.getVecesElegido());
+		bw.newLine();
+		bw.close();
+		fw.close();
+
+		return lista.add(a);
+
+	}
+
+	public void volcadoFichero() throws IOException {
+		for (int i = 0; i < lista.size(); i++) {
+			if (i != 0) {
+				this.insertPrimero(lista.get(i));
+			} else {
+				this.insert(lista.get(i));
+			}
+
+		}
+
+	}
+
 	public boolean delete(int id) throws IOException {
-		ArrayList<Alumno> listaAux = new ArrayList<Alumno>();
-		listaAux = this.getAll();		
+		boolean borradoOk = false;
 		lista = this.getAll();
 		Alumno resul = null;
 		for (Alumno a : lista) {
@@ -104,14 +134,19 @@ public class DAOAlumnoFichero {
 				resul = a;
 				break;
 			}
-
 		}
-		
-		return lista.remove(resul);
+		if (resul != null) {
+			lista.remove(resul);
+			borradoOk = true;
+		}
+		this.volcadoFichero();
+
+		return borradoOk;
 	}
 
-	public boolean update(Alumno pojo) {
+	public boolean update(Alumno pojo) throws IOException {
 		boolean correcto = false;
+		lista = this.getAll();
 		for (Alumno a : lista) {
 			if (a.getId() == pojo.getId()) {
 				a = pojo;
@@ -120,6 +155,7 @@ public class DAOAlumnoFichero {
 			}
 
 		}
+		this.volcadoFichero();
 		return correcto;
 	}
 
